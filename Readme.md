@@ -11,11 +11,13 @@ The application implements a community feed with threaded discussions and a dyna
 ### Backend
 - Django
 - Django REST Framework
-- SQLite (local development)
 
 ### Frontend
 - React
 - Tailwind CSS
+
+### DataBase
+- SQLite
 
 ---
 
@@ -114,14 +116,16 @@ npm run dev
 
 Frontend URL: http://localhost:5173
 
-## Authentication
+### Authentication
 The backend uses Django REST Framework token authentication.
 
-## The frontend sends:
+After login or registration, the frontend sends:
 
-- HTTP Authorization: Token <your_token_here> for authenticated requests.
+```bash
+HTTP Authorization: Token <your_token_here> for authenticated requests.
+```
 
-## API Endpoints
+### API Endpoints
 - GET /api/feed/
 
 - GET /api/posts/<id>/
@@ -141,7 +145,7 @@ The backend uses Django REST Framework token authentication.
 ### Demo Data
 A management command is provided to seed the database:
 
-```Bash
+```bash
 python manage.py seed_demo
 ```
 
@@ -153,7 +157,23 @@ It creates:
 - likes
 - karma transactions
 
-This allows reviewers to immediately explore the feed, nested threads, and leaderboard.
+This allows reviewers to immediately explore:
+
+- the feed
+- nested comment trees
+- concurrency-safe likes
+- the 24-hour leaderboard logic
+
+### Automated Test (Bonus)
+
+One meaningful test is included:
+
+leaderboard calculation only counts karma from the last 24 hours
+
+Run tests:
+```bash
+python manage.py test
+```
 
 ## Deployment
 ### Frontend:
@@ -162,9 +182,18 @@ Vercel
 
 ### Backend:
 
-Railway / Render / Fly.io
+Railway
 
-- In production, PostgreSQL can be used instead of SQLite.
+- The backend is configured with the project root set to the Django backend directory.
+
+- In production, the same API and authentication flow is used as in local development.
+
+### DataBase
+SQLite is used for local development and demo deployment.
+
+The leaderboard and karma system are calculated dynamically from
+the transaction history and do not rely on cached or denormalized
+daily counters.
 
 ## Notes
 This project focuses on:
