@@ -11,7 +11,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/login/", { username, password });
+      const res = await axios.post("https://playto-challenge-production.up.railway.app/api/login/", { username, password });
       
       // Save the data
       localStorage.setItem("token", res.data.token);
