@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+body {
+  @apply bg-[#E9EDF2];
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* This applies the font everywhere */
+  -webkit-font-smoothing: antialiased;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
