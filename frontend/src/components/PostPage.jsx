@@ -34,7 +34,6 @@ export default function PostPage() {
           toast({ title: "Failed to comment", variant: "destructive" });
         }
       }
-
   };
 
   const likePost = async () => {
